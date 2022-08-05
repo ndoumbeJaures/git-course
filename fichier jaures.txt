@@ -1,0 +1,162 @@
+########################################################################"			
+	 Downloading and Installing Git https://git-scm.com/download/win
+		> git --version
+
+			Basic Git Commands
+################################################################
+	 Modèle centralisé : un serveur central contrôle toute la base de code du logiciel.  Exemples de logiciels de versioning utilisant un modèle centralisé : SVN, CVS.
+	 Modèle distribué : toutes les machines ont accès à la base de code, pas besoin de passer par un serveur central.  Exemples de logiciels de versioning utilisant un modèle distribué : Git, Mercurial, Bazaar
+
+	 Configurer Git
+Elles activeront la couleur dans Git. Il ne faut le faire qu’une fois, et ça aide à la lisibilité des messages dans la console.
+		> git config --global color.diff auto
+		> git config --global color.status auto
+		> git config --global color.branch auto
+
+	il faut configurer votre nom (ou pseudo) : 
+		> git config --global user.name "votre_pseudo"
+	Puis votre e-mail : 
+		> git config --global user.email moi@email.com
+		> git config --list
+ 
+	Création d'un commit et sauvegarde
+##########################################################
+	> cd C:\FullStackDev\1\git-test
+	> git init : initialise le dossier indexer comme gérer par Git
+	créer un nouveau projet(repository) Git dans le dossier où vous vous trouvez
+	> git clone http://github.com/symfony/symfony.git
+	Pour cloner le dépôt de Symfony
+	> git status : pour avoir l'etat des choses dans notre projet
+	> git add . : pour ajouter tous les fichiers du repertoir courant
+	> git add vacances.md : pour ajouter le fichier vacances.md
+	Pour ajouter tous les fichiers du répertoire courant dans le gestionnaire de modification/version Git
+	> git remote add origin <repository URL>
+	> git commit -m "first commit" : 
+	commit the change to the git repository
+	donc en plus de numéroté les sauvegardes de modifications, on peut nommer
+	> git commit -a -m "Mise à jour de tous les fichiers indexer par git du projet"
+	si vous ne faites que mettre à jour une version de commit alors ajouter -a
+
+		Historique ou liste des commits
+######################################################
+
+	> git log --oneline : permet de lister les différentes versions de sauvegardes(commit) effectuer sans détails
+	> git log : renvoi la liste des sauvegardes détaillée
+	> git log --stat : mini liste des modifications
+	> git log -p : liste detailler modifications
+
+	> git checkout SHA_ID/char_number
+	permet de revenir(backup) a une version antérieur
+	On utilise l'ID/char de la version voulu
+	pour le copier de la console il faut utiliser la souris ou : click droit  +  propriete console + Experimental + Enable new Ctrl key shortcuts  
+	> git checkout SHA_ID/char_number index.html
+	> git checkout master 
+	pour revenir sur la dernier version à jour
+	> git checkout -- index.html
+	> git commit --amend -m "Votre nouveau message"
+	si vous voulez simplement modifier le message de votre dernier commit
+	si vous n'avez pas encore pushé votre commit sur l'origine !
+	> git reset --hard
+	je veux annuler tous les changements que je n'ai pas encore commités.
+	> git reset HEAD index.html
+	je veux annuler les changements du fichier indexer	
+	> git reset HEAD^^ ou HEAD~2 avant-avant-dernier commit 
+	> git revert 6261cc2
+	pour  annuler le commit 6261cc2
+	
+	l git cherry pick
+		> git checkout production 
+		> git cherry-pick d42c389f
+		> git cherry-pick commitSha
+		permet de sélectionner un commit quelconque et de l’appliquer sur la branche actuelle
+	l git checkout master
+	In this example we have constructed lets say we wanted to use commit `f` in master. First we ensure that we are working on the master branch.
+
+	l Un git merge ne devrait être utilisé que pour la récupération fonctionnelle, intégrale et finale d’une branche dans une autre,
+	Tous les autres cas de figure relèvent du rebase sous toutes ses formes : classique, tri-partite, interactif ou cherry picking.
+
+	
+Travaux sur tran-28 et ajout des classes cColumnInfo et cAddressTableColumnInfos sur le commit dit plus à jour en ligne mais ne les intégrant pas dans les autres fichier
+
+######################################################
+Pour envoyer son code en ligne on commence par aller sur le site
+puis on creer un new projet(repository)
+Le projet sera public dans Github sauf si on prend le mode payant
+
+git remote add origin https://jauresndoumbe@dev.azure.com/jauresndoumbe/Small%20CRM%20%28Used%20For%20Test%29/_git/Small%20CRM%20%28Used%20For%20Test%29 git push -u origin --all
+
+git remote add origin https://jauresndoumbe@dev.azure.com/jauresndoumbe/TCHATCHER-MEDIA/_git/TCHATCHER-MEDIA git push -u origin --all
+
+https://TCHATCHER-MEDIA@dev.azure.com/TCHATCHER-MEDIA/Small%20CRM%20%28Used%20For%20Test%29/_git/Small%20CRM%20%28Used%20For%20Test%29
+
+	> git remote add origin repository_URL
+	Permet de connecter notre  projet/commit PC à une source créer en ligne
+	> git push origin master
+	pour envoyer  son code en ligne sachant que la connexion a la source à déja été faite
+	Un push est irréversible
+	On push à une adresse ici origin la contient
+	On push une branche ici master 
+	> git push -u origin master
+		> git push -u <remote_name> <local_branch_name>
+	> git clone https://github.com/facebook/react.git
+	pour récupérer une version en ligne vers notre projet actuellement vide
+	> git pull origin master
+	Pour récupérer en local uniquement les dernières modifications du dépôt GitHub
+	Le mieux est de s’assurer que vous êtes à jour en faisant un pull avant de faire un push. 
+	> git pull --allow-unrelated-histories
+	> git fetch
+	> Git rebase
+
+	Les branches
+######################################################
+comme un arbre la branche principale est master.
+	> git branch nouvelle-branche
+	pour créer une nouvelle branche baser sur master
+	la nouvelle branche pourra avoir ses propre commit
+	> git branch
+	revois les branches avec souligne celle ci
+	> git checkout nouvelle-branche
+	permet de rendre nouvelle-branche active
+	> git checkout -b ma-branche
+	pour créer une branche et s'y positionner
+	> git merge brancheB
+	ajouter  dans une branche A les mises à jour que vous avez faites dans une autre branche B.
+	on se position dans la branche A avant de taper la commande
+	> git branch -d options_membres
+	la supprimer Votre branche « options_membres »
+	> git blame nomdufichier.extension
+	pour savoir qui à modifier le fichier en question
+	> git show 05b1233
+	vous renvoie directement les détails du commit recherché
+	> .gitignore
+		nomDossiers
+		nomFichiers.extension
+		il ne faut pas versionner les fichiers de configuration
+	> git stash
+	pour ne pas save un brouillon( pas pushable)
+	> git stash save "intégrer un message personnalisé au stash"
+	> git stash save --include-untracked
+	les fichiers non suivis (inconnus de Git) ne seront pas intégrés dans le stash, pour les intefrer il faut
+	> git stash pop
+	vide notre stash(brouillon)
+	> git stash list
+		Pour lister tous les stashs enregistrés
+	> git stash pop
+		Pour réintégrer dans le répertoire de travail et l'index les données contenues dans le dernier stash
+	> git stash pop stash@{0}
+		spécifier une référence de stash pour réintégrer un stash précis et non le dernier
+	> git stash apply
+	garder les modifications dans votre stash
+	> gitk --all
+	Pour avoir la liste des commits et branches
+	> gitk --all&
+	Pour avoir la liste des commits et branches dans une fenêtre détacher de la console
+	> Pour supprimer une branche local
+		> git branch -d branch_name
+		> git branch -D branch_name
+	> Pour supprimer une branche en ligne
+		> git push <remote_name> --delete <branch_name>
+		> git push <remote_name> :<branch_name>
+
+
+	Fork : permet de dupliquer un projet dans notre compte gitHub et ensuite le cloner puis modifier
